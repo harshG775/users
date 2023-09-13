@@ -85,14 +85,14 @@ const getUserById = (req, res) => {
 
 // create
 const createNewUser = (req, res) => {
-    let newUserData = req.body
-    let found = findUser(usersData, newUserData.id);
+    let user = req.body
+    let found = findUser(usersData, user.id);
 
     const Response = {
 		success: {
 			data: {
-				id: newUserData.id,
-				name: newUserData.username,
+				id: user.id,
+				name: user.username,
 			},
 			message: "User created successfully",
 			status: "success",
@@ -103,47 +103,56 @@ const createNewUser = (req, res) => {
 		},
 	};
     if (!found) {
-        usersData.push(newUserData)
+        usersData.push(user)
         res.status(201).json(Response.success)
     }else {
         res.status(500).json(Response.error)
     }
 
 }
+// edit user
+const updateUsersById = (req, res) => {
+    let user = req.body
+    let found = findUser(usersData, user.id);
+
+    let queryItem=req.body
+    let result = data?.filter(item=>{
+        if (item.id===queryItem.id) {
+            res.send( "username: "+ item.username + "\n success deleted ")
+        }
+        console.log(item.id===queryItem.id)
+        return item.id!=queryItem.id
+    })
+    data=result
+    console.log(data)
+}
 // delete
 const deleteUserById = (req, res) => {
-    let newUserData = req.body
-    let found = findUser(usersData, newUserData.id);
+    let userId = req.params.id * 1
+    let found = findUser(usersData, userId);
+    const Response = {
+		success: {
+			message: "User deleted successfully",
+			status: "success",
+            user:{
+                id:userId
+            }
+		},
+		error: {
+			message: "User not found",
+			status: "error",
+		},
+	};
 
-    let queryItem=req.body
-    let result = data?.filter(item=>{
-        if (item.id===queryItem.id) {
-            res.send( "username: "+ item.username + "\n success deleted ")
-        }
-        console.log(item.id===queryItem.id)
-        return item.id!=queryItem.id
-    })
-    data=result
-    console.log(data)
+    if (found) {
+        usersData = usersData.filter(user=>user.id != userId)
+        res.status(200).json(Response.success)
+        console.log(usersData)
+
+    }else {
+        res.status(404).json(Response.error)
+    }
 }
-// edit user
-const editUserById = (req, res) => {
-    let newUserData = req.body
-    let found = findUser(usersData, newUserData.id);
-
-    let queryItem=req.body
-    let result = data?.filter(item=>{
-        if (item.id===queryItem.id) {
-            res.send( "username: "+ item.username + "\n success deleted ")
-        }
-        console.log(item.id===queryItem.id)
-        return item.id!=queryItem.id
-    })
-    data=result
-    console.log(data)
-}
-
-
 
 const userApi=(req, res) => {
     res.status(200)
@@ -156,8 +165,8 @@ const userApi=(req, res) => {
 apiRouter.get("/users", getAllUsers);
 apiRouter.get("/users/:id", getUserById);
 apiRouter.post("/users", createNewUser);
-apiRouter.patch("/users/:id", deleteUserById);
-apiRouter.delete("/users/:id", editUserById);
+apiRouter.patch("/users/:id", updateUsersById);
+apiRouter.delete("/users/:id", deleteUserById);
 apiRouter.get("/*", userApi);
 
 module.exports = apiRouter
