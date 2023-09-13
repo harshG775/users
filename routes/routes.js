@@ -126,6 +126,22 @@ const deleteUserById = (req, res) => {
     data=result
     console.log(data)
 }
+// edit user
+const editUserById = (req, res) => {
+    let newUserData = req.body
+    let found = findUser(usersData, newUserData.id);
+
+    let queryItem=req.body
+    let result = data?.filter(item=>{
+        if (item.id===queryItem.id) {
+            res.send( "username: "+ item.username + "\n success deleted ")
+        }
+        console.log(item.id===queryItem.id)
+        return item.id!=queryItem.id
+    })
+    data=result
+    console.log(data)
+}
 
 
 
@@ -140,7 +156,8 @@ const userApi=(req, res) => {
 apiRouter.get("/users", getAllUsers);
 apiRouter.get("/users/:id", getUserById);
 apiRouter.post("/users", createNewUser);
-apiRouter.delete("/users/:id", deleteUserById);
+apiRouter.patch("/users/:id", deleteUserById);
+apiRouter.delete("/users/:id", editUserById);
 apiRouter.get("/*", userApi);
 
 module.exports = apiRouter
