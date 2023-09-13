@@ -1,5 +1,6 @@
 const express = require('express');
-const apiRouter  = express.Router()
+// const crypto = require("crypto")
+const usersRouter  = express.Router()
 
 let usersData = [
 	{
@@ -33,6 +34,8 @@ let usersData = [
 		data: ["data", "data", "data"],
 	},
 ];
+
+
 function findUserById(users, userId) {
     const foundUser = users.find(user => user.id === userId);
     return foundUser? foundUser :"notfound"
@@ -56,17 +59,20 @@ const getAllUsers = (req, res) => {
 			status: "success",
 		},
 		error: {
-			message: "Failed to retrieve users",
+			message: "Failed to retrieve users there are no users",
 			status: "error",
 		},
 	};
-    res.status(200).json(Response.success)
-    // res.status(404).json(Response.error)
+    if (usersData.length >= 1) {
+        res.status(200).json(Response.success)
+    } else {
+        res.status(404).json(Response.error)
+	}
 }
 // query show one data 
 const getUserById = (req, res) => {
-	let userId = req.params.id * 1;
-	let found = findUserById(usersData, userId);
+	const userId = parseInt(req.params.id);
+	const found = findUserById(usersData, userId);
 	const Response = {
 		success: {
 			result: found,
@@ -88,8 +94,8 @@ const getUserById = (req, res) => {
 }
 // create
 const createNewUser = (req, res) => {
-    let user = req.body
-    let found = findUser(usersData, user.id);
+    const user = req.body
+    const found = findUser(usersData, user.id);
 
     const Response = {
 		success: {
@@ -115,24 +121,28 @@ const createNewUser = (req, res) => {
 }
 // edit user
 const updateUsersById = (req, res) => {
-    let user = req.body
-    let found = findUser(usersData, user.id);
-
-    let queryItem=req.body
-    let result = data?.filter(item=>{
-        if (item.id===queryItem.id) {
-            res.send( "username: "+ item.username + "\n success deleted ")
-        }
-        console.log(item.id===queryItem.id)
-        return item.id!=queryItem.id
-    })
-    data=result
-    console.log(data)
+    const found = findUser(usersData, parseInt(req.params.id));
+    // const updatedUser = {
+	// 	id: req.body?.id,
+	// 	username: req.body?.username,
+	// 	password: req.body?.password,
+	// 	data: req.body?.data,
+	// };
+    // const result = data?.filter(item=>{
+    //     if (item.id===queryItem.id) {
+    //         res.send( "username: "+ item.username + "\n success deleted ")
+    //     }
+    //     console.log(item.id===queryItem.id)
+    //     return item.id!=queryItem.id
+    // })
+    // data=result
+    // console.log(data)
+    res.send("under maintaining")
 }
 // delete
 const deleteUserById = (req, res) => {
-    let userId = req.params.id * 1
-    let found = findUser(usersData, userId);
+    const userId = parseInt(req.params.id)
+    const found = findUser(usersData, userId);
     const Response = {
 		success: {
 			message: "User deleted successfully",
@@ -150,26 +160,20 @@ const deleteUserById = (req, res) => {
     if (found) {
         usersData = usersData.filter(user=>user.id != userId)
         res.status(200).json(Response.success)
-        console.log(usersData)
+        // console.log(usersData)
 
     }else {
         res.status(404).json(Response.error)
     }
 }
 
-const userApi=(req, res) => {
-    res.status(200)
-        .json({
-            message: "Welcome to our API!",
-            status: "success"
-          });
-}
 
-apiRouter.get("/users", getAllUsers);
-apiRouter.get("/users/:id", getUserById);
-apiRouter.post("/users", createNewUser);
-apiRouter.patch("/users/:id", updateUsersById);
-apiRouter.delete("/users/:id", deleteUserById);
-apiRouter.get("/*", userApi);
+usersRouter.route("/")
+	.get(getAllUsers)
+	.post(createNewUser)
+usersRouter.route("/:id")
+	.get(getUserById)
+	.patch(updateUsersById)
+	.delete(deleteUserById)
 
-module.exports = apiRouter
+module.exports = usersRouter
