@@ -2,6 +2,90 @@ const express = require('express');
 // const crypto = require("crypto")
 const usersRouter  = express.Router()
 
+// const users = [
+// 	{
+// 		id: "user1",
+// 		username: "harsh",
+// 		password: "harsh775",
+// 		courses: [
+// 			{
+// 				id: "course101",
+// 				access: {
+// 					is_paid: true,
+// 					is_instructor: false,
+// 					is_admin: false,
+// 				},
+// 			},
+// 		],
+// 	},
+// 	{
+// 		id: "user2",
+// 		username: "john",
+// 		password: "john123",
+// 		courses: [
+// 			{
+// 				id: "course101",
+// 				access: {
+// 					is_paid: false,
+// 					is_instructor: true,
+// 					is_admin: false,
+// 				},
+// 			},
+// 		],
+// 	},
+// 	{
+// 		id: "user3",
+// 		username: "alice",
+// 		password: "alice456",
+// 		courses: [
+// 			{
+// 				id: "course101",
+// 				access: {
+// 					is_paid: true,
+// 					is_instructor: false,
+// 					is_admin: false,
+// 				},
+// 			},
+// 			{
+// 				id: "course102",
+// 				access: {
+// 					is_paid: true,
+// 					is_instructor: false,
+// 					is_admin: false,
+// 				},
+// 			},
+// 		],
+// 	},
+// 	{
+// 		id: "user4",
+// 		username: "bob",
+// 		password: "bob789",
+// 		courses: [],
+// 	},
+// 	{
+// 		id: "user5",
+// 		username: "susan",
+// 		password: "susan102",
+// 		courses: [
+// 			{
+// 				id: "course102",
+// 				access: {
+// 					is_paid: true,
+// 					is_instructor: false,
+// 					is_admin: false,
+// 				},
+// 			},
+// 			{
+// 				id: "course103",
+// 				access: {
+// 					is_paid: false,
+// 					is_instructor: true,
+// 					is_admin: false,
+// 				},
+// 			},
+// 		],
+// 	},
+// ];
 let usersData = [
 	{
 		id: 1,

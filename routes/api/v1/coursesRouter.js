@@ -85,145 +85,86 @@ const coursesData = [
 		},
 	},
 ];
-const users = [
-	{
-		id: "user1",
-		username: "harsh",
-		password: "harsh775",
-		courses: [
-			{
-				id: "course101",
-				access: {
-					is_paid: true,
-					is_instructor: false,
-					is_admin: false,
-				},
-			},
-		],
-	},
-	{
-		id: "user2",
-		username: "john",
-		password: "john123",
-		courses: [
-			{
-				id: "course101",
-				access: {
-					is_paid: false,
-					is_instructor: true,
-					is_admin: false,
-				},
-			},
-		],
-	},
-	{
-		id: "user3",
-		username: "alice",
-		password: "alice456",
-		courses: [
-			{
-				id: "course101",
-				access: {
-					is_paid: true,
-					is_instructor: false,
-					is_admin: false,
-				},
-			},
-			{
-				id: "course102",
-				access: {
-					is_paid: true,
-					is_instructor: false,
-					is_admin: false,
-				},
-			},
-		],
-	},
-	{
-		id: "user4",
-		username: "bob",
-		password: "bob789",
-		courses: [],
-	},
-	{
-		id: "user5",
-		username: "susan",
-		password: "susan102",
-		courses: [
-			{
-				id: "course102",
-				access: {
-					is_paid: true,
-					is_instructor: false,
-					is_admin: false,
-				},
-			},
-			{
-				id: "course103",
-				access: {
-					is_paid: false,
-					is_instructor: true,
-					is_admin: false,
-				},
-			},
-		],
-	},
-];
-
-
 
 const express = require("express");
-const listRouter = express.Router();
+const coursesRouter = express.Router();
 
 const getCourses = (req, res) => {
-    if (true) {
-        res.status(200).json({ message: "Success" });
-    } else {
-        res.status(500).json({ error: "Internal Server Error" });
-    }
-}
+	if (true) {
+		res.status(200).json({
+			result: coursesData,
+			count: coursesData.length,
+			message: "Course retrieved successfully",
+			status: "success",
+		});
+	} else {
+		res.status(500).json({
+			message: "Failed to retrieve courses",
+			status: 500,
+		});
+	}
+};
 
 const createCourse = (req, res) => {
-    if (true) {
-        res.status(201).json({ message: "Resource created" });
-    } else {
-        res.status(400).json({ error: "Bad Request" });
-    }
-}
+	if (true) {
+		res.status(201).json({
+			data: {
+				id: "user.id",
+			},
+			message: "Course created successfully",
+			status: "success",
+		});
+	} else {
+		res.status(400).json({
+			message: "Failed to create course",
+			status: 400,
+		});
+	}
+};
 
 const getCourseById = (req, res) => {
-    if (true) {
-        res.status(200).json({ message: "Success" });
-    } else {
-        res.status(404).json({ error: "Not Found" });
-    }
-}
+	if (true) {
+		res.status(200).json({
+			result: coursesData[1],
+			count: 1,
+			message: "User retrieved successfully",
+			status: "success",
+		});
+	} else {
+		res.status(404).json({
+			message: "course not found",
+		 	status: 404 
+		});
+	}
+};
 
 const updateCourseById = (req, res) => {
-    if (true) {
-        res.status(204).send();
-    } else {
-        res.status(400).json({ error: "Bad Request" });
-    }
-}
+	if (true) {
+		res.status(204).send();
+	} else {
+		res.status(400).json({
+			message: "User not found",
+			status: 400,
+		});
+	}
+};
 
 const deleteCourseById = (req, res) => {
-    if (true) {
-        res.status(204).send();
-    } else {
-        res.status(404).json({ error: "Not Found" });
-    }
-}
+	if (true) {
+		res.status(204).send();
+	} else {
+		res.status(404).json({
+			message: "User not found",
+			status: 404,
+		});
+	}
+};
 
-
-listRouter.route("/")
-    .get(getCourses)
-    .post(createCourse);
-listRouter
+coursesRouter.route("/").get(getCourses).post(createCourse);
+coursesRouter
 	.route("/:id")
 	.get(getCourseById)
 	.patch(updateCourseById)
 	.delete(deleteCourseById);
 
-module.exports = listRouter;
-
+module.exports = coursesRouter;
