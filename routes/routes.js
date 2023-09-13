@@ -33,54 +33,88 @@ let usersData = [
 		data: ["data", "data", "data"],
 	},
 ];
+function findUserById(users, userId) {
+    const foundUser = users.find(user => user.id === userId);
+    return foundUser? foundUser :"notfound"
 
-// show show all
+}
+function findUser(users, userId) {
+    const foundUser = users.find(user => user.id === userId);
+    return foundUser? true:false
+}
+// query show all
 const getAllUsers = (req, res) => {
     const Response = {
-        success :{
-            result: usersData,
-            count: usersData.length,
-            message: "Users retrieved successfully",
-            status: "success"
-        },
-        error :{
-            message: "Failed to retrieve users",
-            status: "error"
-        }
-    }
+		success: {
+			count: usersData.length,
+			result: usersData,
+			message: "Users retrieved successfully",
+			status: "success",
+		},
+		error: {
+			message: "Failed to retrieve users",
+			status: "error",
+		},
+	};
     res.status(200).json(Response.success)
+    // res.status(404).json(Response.error)
 }
-// show query result
+// query show one data 
 const getUserById = (req, res) => {
-    let queryItem=req.body
-    let result = data?.find(item=>{
-        if (item.id===queryItem.id) {
-            console.log(item.id)
-        }
-        return item.id===queryItem.id
-    })
-    res.send(result?result:{result:"NotFound"})
+	let userId = req.params.id * 1;
+	let found = findUserById(usersData, userId);
+	const Response = {
+		success: {
+			result: found,
+			count: 1,
+			message: "User retrieved successfully",
+			status: "success",
+		},
+		error: {
+			message: "User not found",
+			status: "error",
+		},
+	};
+
+	if (found === "notfound") {
+		res.status(404).send(Response.error);
+	} else {
+		res.status(200).send(Response.success);
+	}
 }
 
 // create
 const createNewUser = (req, res) => {
-    let newItem=req.body
+    let newUserData = req.body
+    let found = findUser(usersData, newUserData.id);
 
-    function add(i) {
-        let d=data.find( (item)=>item.username===i.username )
-        if (d===undefined) {
-            data.push(i)
-        }
-        else{
-            return "already added"
-        }
+    const Response = {
+		success: {
+			data: {
+				id: newUserData.id,
+				name: newUserData.username,
+			},
+			message: "User created successfully",
+			status: "success",
+		},
+		error: {
+			message: "Failed to create user already exist",
+			status: "error",
+		},
+	};
+    if (!found) {
+        usersData.push(newUserData)
+        res.status(201).json(Response.success)
+    }else {
+        res.status(500).json(Response.error)
     }
-    add(newItem)
-    console.log(data)
-    res.send("ok")
+
 }
 // delete
 const deleteUserById = (req, res) => {
+    let newUserData = req.body
+    let found = findUser(usersData, newUserData.id);
+
     let queryItem=req.body
     let result = data?.filter(item=>{
         if (item.id===queryItem.id) {
@@ -103,10 +137,10 @@ const userApi=(req, res) => {
           });
 }
 
-apiRouter.get("/users/", getAllUsers);
+apiRouter.get("/users", getAllUsers);
 apiRouter.get("/users/:id", getUserById);
-apiRouter.patch("/users/create", createNewUser);
-apiRouter.delete("/users/:id/delete", deleteUserById);
+apiRouter.post("/users", createNewUser);
+apiRouter.delete("/users/:id", deleteUserById);
 apiRouter.get("/*", userApi);
 
 module.exports = apiRouter
