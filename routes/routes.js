@@ -42,6 +42,10 @@ function findUser(users, userId) {
     const foundUser = users.find(user => user.id === userId);
     return foundUser? true:false
 }
+
+
+
+
 // query show all
 const getAllUsers = (req, res) => {
     const Response = {
@@ -82,7 +86,6 @@ const getUserById = (req, res) => {
 		res.status(200).send(Response.success);
 	}
 }
-
 // create
 const createNewUser = (req, res) => {
     let user = req.body
