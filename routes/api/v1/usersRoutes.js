@@ -1,6 +1,5 @@
 const express = require('express');
-// const crypto = require("crypto")
-const usersRouter  = express.Router()
+const router  = express.Router()
 
 // const users = [
 // 	{
@@ -153,29 +152,6 @@ const getAllUsers = (req, res) => {
         res.status(404).json(Response.error)
 	}
 }
-// query show one data 
-const getUserById = (req, res) => {
-	const userId = parseInt(req.params.id);
-	const found = findUserById(usersData, userId);
-	const Response = {
-		success: {
-			result: found,
-			count: 1,
-			message: "User retrieved successfully",
-			status: "success",
-		},
-		error: {
-			message: "User not found",
-			status: "error",
-		},
-	};
-
-	if (found === "notfound") {
-		res.status(404).send(Response.error);
-	} else {
-		res.status(200).send(Response.success);
-	}
-}
 // create
 const createNewUser = (req, res) => {
     const user = req.body
@@ -202,6 +178,29 @@ const createNewUser = (req, res) => {
         res.status(500).json(Response.error)
     }
 
+}
+// query show one data 
+const getUserById = (req, res) => {
+	const userId = parseInt(req.params.id);
+	const found = findUserById(usersData, userId);
+	const Response = {
+		success: {
+			result: found,
+			count: 1,
+			message: "User retrieved successfully",
+			status: "success",
+		},
+		error: {
+			message: "User not found",
+			status: "error",
+		},
+	};
+
+	if (found === "notfound") {
+		res.status(404).send(Response.error);
+	} else {
+		res.status(200).send(Response.success);
+	}
 }
 // edit user
 const updateUsersById = (req, res) => {
@@ -252,12 +251,12 @@ const deleteUserById = (req, res) => {
 }
 
 
-usersRouter.route("/")
+router.route("/")
 	.get(getAllUsers)
 	.post(createNewUser)
-usersRouter.route("/:id")
+router.route("/:id")
 	.get(getUserById)
 	.patch(updateUsersById)
 	.delete(deleteUserById)
 
-module.exports = usersRouter
+module.exports = router

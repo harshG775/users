@@ -1,0 +1,189 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "api/v1/",
+    "dateExported": "2023-09-14T04:06:17.171Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "4de624e8-d36f-45cf-b338-b1ef261aed8f",
+            "name": "users",
+            "containerId": "",
+            "created": "2023-09-13T17:26:20.052Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "0916eae3-c65d-4310-8f99-aebe0e6d38e7",
+            "name": "courses",
+            "containerId": "",
+            "created": "2023-09-13T17:26:28.370Z",
+            "sortNum": 20000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "3e920dac-0b83-4bad-a8f2-a5d94762d952",
+            "colId": "b1e5b7e3-064f-4a1f-919a-2f7f7881c445",
+            "containerId": "0916eae3-c65d-4310-8f99-aebe0e6d38e7",
+            "name": "get all courses",
+            "url": "localhost:3000/api/v1/courses/",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-09-13T17:26:07.616Z",
+            "modified": "2023-09-13T17:28:55.141Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "7c67b9f5-0cb9-4437-87a7-746750aee825",
+            "colId": "b1e5b7e3-064f-4a1f-919a-2f7f7881c445",
+            "containerId": "0916eae3-c65d-4310-8f99-aebe0e6d38e7",
+            "name": "get course by id",
+            "url": "localhost:3000/api/v1/courses/course101",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2023-09-13T17:29:50.581Z",
+            "modified": "2023-09-13T17:29:50.581Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n\"id\": 12,\n\"username\": \"john\",\n\"password\": \"john123\",\n\"data\": [\n\"data\",\n\"data\",\n\"data\"\n]\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7a729f38-ffb4-45df-8591-31792dcfe38b",
+            "colId": "b1e5b7e3-064f-4a1f-919a-2f7f7881c445",
+            "containerId": "0916eae3-c65d-4310-8f99-aebe0e6d38e7",
+            "name": "courses delete",
+            "url": "localhost:3000/api/v1/courses/course101",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2023-09-13T17:31:13.388Z",
+            "modified": "2023-09-13T17:31:13.388Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "efde9d0c-c18a-4e79-85ac-f744ec09e9dc",
+            "colId": "b1e5b7e3-064f-4a1f-919a-2f7f7881c445",
+            "containerId": "0916eae3-c65d-4310-8f99-aebe0e6d38e7",
+            "name": "create one course",
+            "url": "localhost:3000/api/v1/courses/",
+            "method": "POST",
+            "sortNum": 40000,
+            "created": "2023-09-13T17:33:41.832Z",
+            "modified": "2023-09-13T17:33:41.832Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n        \"id\": \"course102\",\n        \"title\": \"CSS Essentials\",\n        \"description\": \"Explore essential CSS concepts.\",\n        \"category\": \"Web Development\",\n        \"instructor\": \"Jane Smith\",\n        \"duration\": \"6 weeks\",\n        \"price\": {\n            \"regular\": 49.99,\n            \"discounted\": 29.99\n        },\n        \"tags\": [\n            \"CSS\",\n            \"Front-end\",\n            \"Intermediate\"\n        ],\n        \"reviews\": {\n            \"average_rating\": 4.5,\n            \"total_reviews\": 90\n        }\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "67565704-14c6-4fb5-89d1-5a7c87382cb1",
+            "colId": "b1e5b7e3-064f-4a1f-919a-2f7f7881c445",
+            "containerId": "0916eae3-c65d-4310-8f99-aebe0e6d38e7",
+            "name": "updata one course",
+            "url": "localhost:3000/api/v1/courses/course101",
+            "method": "PATCH",
+            "sortNum": 50000,
+            "created": "2023-09-13T17:35:01.273Z",
+            "modified": "2023-09-13T17:35:01.273Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n        \"id\": \"course102\",\n        \"title\": \"CSS Essentials\",\n        \"description\": \"Explore essential CSS concepts.\",\n        \"category\": \"Web Development\",\n        \"instructor\": \"Jane Smith\",\n        \"duration\": \"6 weeks\",\n        \"price\": {\n            \"regular\": 49.99,\n            \"discounted\": 29.99\n        },\n        \"tags\": [\n            \"CSS\",\n            \"Front-end\",\n            \"Intermediate\"\n        ],\n        \"reviews\": {\n            \"average_rating\": 4.5,\n            \"total_reviews\": 90\n        }\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "ad8f8a3b-05c1-4350-b12f-66234e7dc1cc",
+            "colId": "b1e5b7e3-064f-4a1f-919a-2f7f7881c445",
+            "containerId": "4de624e8-d36f-45cf-b338-b1ef261aed8f",
+            "name": "get all users",
+            "url": "localhost:3000/api/v1/users",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-09-14T04:01:53.625Z",
+            "modified": "2023-09-14T04:02:03.213Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "6f5d81be-bacb-4253-bbb2-94c9e5874b8c",
+            "colId": "b1e5b7e3-064f-4a1f-919a-2f7f7881c445",
+            "containerId": "4de624e8-d36f-45cf-b338-b1ef261aed8f",
+            "name": "get one user by id",
+            "url": "localhost:3000/api/v1/users/1",
+            "method": "GET",
+            "sortNum": 70000,
+            "created": "2023-09-14T04:02:29.406Z",
+            "modified": "2023-09-14T04:04:30.204Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "33e82297-8d1f-406c-b1a2-1d1d3354cba4",
+            "colId": "b1e5b7e3-064f-4a1f-919a-2f7f7881c445",
+            "containerId": "4de624e8-d36f-45cf-b338-b1ef261aed8f",
+            "name": "create one user",
+            "url": "localhost:3000/api/v1/users/",
+            "method": "POST",
+            "sortNum": 80000,
+            "created": "2023-09-14T04:03:11.581Z",
+            "modified": "2023-09-14T04:03:11.581Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n        \"id\": \"course102\",\n        \"title\": \"CSS Essentials\",\n        \"description\": \"Explore essential CSS concepts.\",\n        \"category\": \"Web Development\",\n        \"instructor\": \"Jane Smith\",\n        \"duration\": \"6 weeks\",\n        \"price\": {\n            \"regular\": 49.99,\n            \"discounted\": 29.99\n        },\n        \"tags\": [\n            \"CSS\",\n            \"Front-end\",\n            \"Intermediate\"\n        ],\n        \"reviews\": {\n            \"average_rating\": 4.5,\n            \"total_reviews\": 90\n        }\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "19af63f0-45fb-4466-90e6-734f3368f841",
+            "colId": "b1e5b7e3-064f-4a1f-919a-2f7f7881c445",
+            "containerId": "4de624e8-d36f-45cf-b338-b1ef261aed8f",
+            "name": "delete one user by id",
+            "url": "localhost:3000/api/v1/users/1",
+            "method": "DELETE",
+            "sortNum": 90000,
+            "created": "2023-09-14T04:03:42.262Z",
+            "modified": "2023-09-14T04:03:42.262Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "478cd36e-b7a6-47e9-b9d7-52f7c50c2a78",
+            "colId": "b1e5b7e3-064f-4a1f-919a-2f7f7881c445",
+            "containerId": "4de624e8-d36f-45cf-b338-b1ef261aed8f",
+            "name": "update user by id",
+            "url": "localhost:3000/api/v1/users/1",
+            "method": "PATCH",
+            "sortNum": 100000,
+            "created": "2023-09-14T04:04:20.083Z",
+            "modified": "2023-09-14T04:04:20.083Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n        \"id\": \"course102\",\n        \"title\": \"CSS Essentials\",\n        \"description\": \"Explore essential CSS concepts.\",\n        \"category\": \"Web Development\",\n        \"instructor\": \"Jane Smith\",\n        \"duration\": \"6 weeks\",\n        \"price\": {\n            \"regular\": 49.99,\n            \"discounted\": 29.99\n        },\n        \"tags\": [\n            \"CSS\",\n            \"Front-end\",\n            \"Intermediate\"\n        ],\n        \"reviews\": {\n            \"average_rating\": 4.5,\n            \"total_reviews\": 90\n        }\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

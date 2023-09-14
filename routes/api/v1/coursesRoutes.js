@@ -87,7 +87,7 @@ const coursesData = [
 ];
 
 const express = require("express");
-const coursesRouter = express.Router();
+const router = express.Router();
 
 const getCourses = (req, res) => {
 	if (true) {
@@ -160,11 +160,13 @@ const deleteCourseById = (req, res) => {
 	}
 };
 
-coursesRouter.route("/").get(getCourses).post(createCourse);
-coursesRouter
+router.route("/")
+	.get(getCourses)
+	.post(createCourse);
+router
 	.route("/:id")
 	.get(getCourseById)
 	.patch(updateCourseById)
 	.delete(deleteCourseById);
 
-module.exports = coursesRouter;
+module.exports = router;
