@@ -1,120 +1,87 @@
-// const users = [
-// 	{
-// 		id: "user1",
-// 		username: "harsh",
-// 		password: "harsh775",
-// 		courses: [
-// 			{
-// 				id: "course101",
-// 				access: {
-// 					is_paid: true,
-// 					is_instructor: false,
-// 					is_admin: false,
-// 				},
-// 			},
-// 		],
-// 	},
-// 	{
-// 		id: "user2",
-// 		username: "john",
-// 		password: "john123",
-// 		courses: [
-// 			{
-// 				id: "course101",
-// 				access: {
-// 					is_paid: false,
-// 					is_instructor: true,
-// 					is_admin: false,
-// 				},
-// 			},
-// 		],
-// 	},
-// 	{
-// 		id: "user3",
-// 		username: "alice",
-// 		password: "alice456",
-// 		courses: [
-// 			{
-// 				id: "course101",
-// 				access: {
-// 					is_paid: true,
-// 					is_instructor: false,
-// 					is_admin: false,
-// 				},
-// 			},
-// 			{
-// 				id: "course102",
-// 				access: {
-// 					is_paid: true,
-// 					is_instructor: false,
-// 					is_admin: false,
-// 				},
-// 			},
-// 		],
-// 	},
-// 	{
-// 		id: "user4",
-// 		username: "bob",
-// 		password: "bob789",
-// 		courses: [],
-// 	},
-// 	{
-// 		id: "user5",
-// 		username: "susan",
-// 		password: "susan102",
-// 		courses: [
-// 			{
-// 				id: "course102",
-// 				access: {
-// 					is_paid: true,
-// 					is_instructor: false,
-// 					is_admin: false,
-// 				},
-// 			},
-// 			{
-// 				id: "course103",
-// 				access: {
-// 					is_paid: false,
-// 					is_instructor: true,
-// 					is_admin: false,
-// 				},
-// 			},
-// 		],
-// 	},
-// ];
-let usersData = [
+const usersData = [
 	{
-		id: 1,
+		id: "user1",
 		username: "harsh",
 		password: "harsh775",
-		data: ["data", "data", "data"],
+		courses: [
+			{
+				id: "course101",
+				access: {
+					is_paid: true,
+					is_instructor: false,
+					is_admin: false,
+				},
+			},
+		],
 	},
 	{
-		id: 2,
+		id: "user2",
 		username: "john",
 		password: "john123",
-		data: ["data", "data", "data"],
+		courses: [
+			{
+				id: "course101",
+				access: {
+					is_paid: false,
+					is_instructor: true,
+					is_admin: false,
+				},
+			},
+		],
 	},
 	{
-		id: 3,
+		id: "user3",
 		username: "alice",
 		password: "alice456",
-		data: ["data", "data", "data"],
+		courses: [
+			{
+				id: "course101",
+				access: {
+					is_paid: true,
+					is_instructor: false,
+					is_admin: false,
+				},
+			},
+			{
+				id: "course102",
+				access: {
+					is_paid: true,
+					is_instructor: false,
+					is_admin: false,
+				},
+			},
+		],
 	},
 	{
-		id: 4,
+		id: "user4",
 		username: "bob",
 		password: "bob789",
-		data: ["data", "data", "data"],
+		courses: [],
 	},
 	{
-		id: 5,
+		id: "user5",
 		username: "susan",
 		password: "susan102",
-		data: ["data", "data", "data"],
+		courses: [
+			{
+				id: "course102",
+				access: {
+					is_paid: true,
+					is_instructor: false,
+					is_admin: false,
+				},
+			},
+			{
+				id: "course103",
+				access: {
+					is_paid: false,
+					is_instructor: true,
+					is_admin: false,
+				},
+			},
+		],
 	},
 ];
-
 
 function findUserById(users, userId) {
     const foundUser = users.find(user => user.id === userId);
@@ -174,7 +141,7 @@ exports.createNewUser = (req, res) => {
 }
 // query show one data 
 exports.getUserById = (req, res) => {
-	const userId = parseInt(req.params.id);
+	const userId = req.params.id;
 	const found = findUserById(usersData, userId);
 	const Response = {
 		success: {
@@ -197,7 +164,7 @@ exports.getUserById = (req, res) => {
 }
 // edit user
 exports.updateUsersById = (req, res) => {
-    const found = findUser(usersData, parseInt(req.params.id));
+    const found = findUser(usersData, req.params.id);
     // const updatedUser = {
 	// 	id: req.body?.id,
 	// 	username: req.body?.username,
@@ -217,7 +184,7 @@ exports.updateUsersById = (req, res) => {
 }
 // delete
 exports.deleteUserById = (req, res) => {
-    const userId = parseInt(req.params.id)
+    const userId = req.params.id
     const found = findUser(usersData, userId);
     const Response = {
 		success: {
