@@ -5,7 +5,13 @@ const usersRouter = require("./routes/api/v1/usersRoutes");
 const coursesRouter = require("./routes/api/v1/coursesRoutes");
 
 const app = express();
-app.use(morgan("dev"));
+
+console.log(process.env.NODE_ENV)
+
+if (process.env.NODE_ENV==="development") {
+    app.use(morgan("dev"));
+}
+app.use(express.static(__dirname+"/frontend"))
 app.use(express.json());
 
 

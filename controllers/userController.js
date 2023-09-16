@@ -92,6 +92,7 @@ function findUser(users, userId) {
     const foundUser = users.find(user => user.id === userId);
     return foundUser? true:false
 }
+
 // query show all
 exports.getAllUsers = (req, res) => {
     const Response = {
