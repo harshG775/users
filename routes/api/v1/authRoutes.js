@@ -1,11 +1,11 @@
 const express = require("express")
-const authRouter = express.Router()
+const router = express.Router()
 
 const test = (req,res)=>{
     res.send("auth route working")
 }
 
-authRouter.route("/")
+router.route("/")
     .get(test)
 
-module.exports = authRouter
+module.exports = router
