@@ -1,29 +1,28 @@
 const mongoose = require("mongoose")
-const userSchema = new mongoose.Schema({
-	gmail:	{
-			type:String,
-			required:[true,"user gmail required"],
-			unique:true
-		},
-	username: {
-			type:String,
-			required:[true,"user username required"],
-			unique:true
-		},
-	password: {
-			type:String,
-			required:[true,"user password required"]
-		},
-	courses: [
-		{
-			id: String,
-			access: {
-				is_paid: Boolean,
-				is_instructor: Boolean,
-				is_admin: Boolean,
-			},
-		},
-	],
-})
-const User =mongoose.model("User",userSchema)
-module.exports ={User}
+const courserSchema = new mongoose.Schema({
+	title: {
+		type: String,
+		required: [true, "course title required"],
+		unique: true,
+	},
+	description: {
+		type: String,
+	},
+	category: String,
+	instructor: {
+		type: String,
+		required: [true, "instructor name required"],
+	},
+	duration: Number,
+	price: {
+		regular: Number,
+		discounted: Number,
+	},
+	tags: [String, String, String],
+	reviews: {
+		average_rating: Number,
+		total_reviews: Number,
+	},
+});
+const Course =mongoose.model("Courses",courserSchema)
+module.exports =Course

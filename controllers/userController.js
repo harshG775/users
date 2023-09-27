@@ -24,9 +24,11 @@ exports.getUserById = async (req, res) => {
 			message:"Response.error",
 			user:oneUser
 		});
-	} catch (error) {
-		res.status(200).send(Response.success);
-			
+	} catch (err) {
+		res.status(404).json({
+			message:"Response.error",
+			error:err
+		})
 	}	
 }
 // create
@@ -50,10 +52,8 @@ exports.createNewUser = async (req, res) => {
 exports.updateUsersById = async (req, res) => {
 	try {
 		const newUser = await User.findByIdAndUpdate(
-				req.params.id,req.body,{
-					new:true,
-					runValidators:true
-			}
+				req.params.id,
+				req.body,{new:true,runValidators:true}
 		)
 		res.status(201).json({
 			message:"Response.success",

@@ -5,12 +5,57 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./images/icons/gear.png" type="image/x-icon">
     <title>reactive</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            list-style-type: none;
+        }
+        .container {
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+
+            display: flex;
+        }
+        .item {
+            scroll-snap-align: center;
+            flex: 1 0 100%;
+        }
+    </style>
 </head>
 <body>
-    <form>
-        <input placeholder="search" type="text">
-        <button type="submit">submit</button>
-    </form>
-    <script type="module" defer src="./static/js/index.js"></script>
+    <ul class="nav-links">
+        <li className="links">shop</li>
+        <li className="links">features</li>
+        <li className="links">delivery</li>
+        <li className="links">contacts</li>
+    </ul>
+    <div class="container">
+        <div class="item">
+            <h1>shop</h1>
+            <h6>header</h6>
+
+        </div>
+        <div class="item">
+            <h1>features</h1>
+
+        </div>
+        <div class="item">
+            <h1>delivery</h1>
+
+        </div>
+        <div class="item">
+            <h1>contacts</h1>
+
+        </div>
+    </div>
+    <script type="module" defer src="./javascript/js/index.js"></script>
+    <!-- <script type="module" defer src="./static/js/index.js"></script> -->
 </body>
 </html>
