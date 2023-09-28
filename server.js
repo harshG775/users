@@ -7,6 +7,7 @@ let DB = process.env.CLOUD_DB.replace("<password>",process.env.API_DB_PASS)
 if (process.env.NODE_ENV != "production") {
     DB = process.env.LOCAL_DB
 }
+console.log(process.env.NODE_ENV )
 
 mongoose.connect(DB+"/test_api")
 	.then(() => {console.log('mongoose is connected !!!!!!')})
