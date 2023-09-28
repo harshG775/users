@@ -93,7 +93,10 @@ exports.getCourses = async (req, res) => {
 		const allCourses = await Course.find()
 		res.status(200).json({
 			message:"Response.success",
-			data:allCourses
+			count:allCourses.length,
+			data:{
+				courses:allCourses
+			}
 		})
 	} catch (err) {
 		res.status(404).json({
@@ -107,11 +110,15 @@ exports.getCourseById = async (req, res) => {
 		const oneCourse = await Course.findById(req.params.id)
 		res.status(404).send({
 			message:"Response.success",
-			user:oneCourse
+			count:1,
+			data:{
+				course:oneCourse
+			}
 		});
 	} catch (err) {
 		res.status(404).json({
 			message:"Response.error",
+			count:0,
 			error:err
 		})
 	}
@@ -121,7 +128,10 @@ exports.createCourse = async (req, res) => {
 		const newCourse = await Course.create(req.body);
 		res.status(201).json({
 			message:"Response.success",
-			data: newCourse
+			count:1,
+			data:{
+				course:newCourse
+			}
 		})
 
 	} catch (err) {
@@ -140,8 +150,11 @@ exports.updateCourseById = async (req, res) => {
 				req.body,{new:true,runValidators:true}
 		)
 		res.status(201).json({
-			message:"Response.success",
-			data: oneCourse
+			message:"Response.success updated",
+			count:1,
+			data:{
+				courses:oneCourse
+			}
 		})
 
 	} catch (err) {
@@ -157,8 +170,11 @@ exports.deleteCourseById = async (req, res) => {
 	try {
 		const deletedCourse = await Course.findByIdAndDelete(req.params.id)
 		res.status(200).json({
-			message:"Response.success",
-			deletedCourse
+			message:"Response.success deleted",
+			count:1,
+			data:{
+				Course:deletedCourse
+			}
 			}
 		)
 	} catch (error) {
